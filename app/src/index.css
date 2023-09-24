@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+}
+html, body, #root, .mainLayout, .appLayout {
+    min-height: 100vh;
+}
+
+/* main layout*/
+.mainLayout{
+    display: flex;
+}
+
+.mainLayout aside{
+    width: 240px;
+    background-color: #534596;
+    padding: 1rem
+}
+
+.mainLayout aside > a {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.mainLayout aside > a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.mainLayout .content{
+    flex: 1;
+}
+
+.mainLayout header {
+    height: 80px;
+    padding: 2rem 3rem;
+    background-color: white;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainLayout main{
+    padding: 2rem;
+}
+/*end main layout*/
+
+/* Login/Signup forms*/
+.login-signup-form {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-signup-form .form {
+    width: 360px;
+    position: relative;
+    z-index: 1;
+    background: #706ae7;
+    max-width: 360px;
+    padding: 34px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.login-signup-form input{
+    height: 35px;
+    width: 200px;
+}
+
+.login-signup-form button{
+    padding: 10px;
+    width: 140px;
+    background-color: #1324df;
+    color: white;
+    border: none;
+}
+
+.login-signup-form .title {
+    font-size: 20px;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+}
+
+.login-signup-form .form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 16px;
+    text-align: center;
+}
+
+.login-signup-form .form .message a {
+    color: #1324df;
+    text-decoration: none;
+}
+
+/* Login/Signup form */
+
+.btn,
+.btn-add,
+.btn-edit,
+.btn-delete {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #3309ce;
+    border: 0;
+    text-decoration: none;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 16px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
