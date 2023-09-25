@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return response($request->user()->is_admin);
     });
     Route::get('/products/all', [ProductController::class, 'show']);
+    Route::get('/dashboard/status', [DashboardController::class, 'show']);
 
     Route::group(['middleware' => ['admin']], function () {
         Route::post('/products/create', [ProductController::class, 'store']);
