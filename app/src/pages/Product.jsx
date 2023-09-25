@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import axiosClient from '../services/axios-client';
 import { useStateContext } from '../context/ContextProvider';
+import Pusher from 'pusher-js';
 
 const style = {
   position: 'absolute',
@@ -33,6 +34,8 @@ export const Product = () => {
   const [errors, setErrors] = useState(null);
   const [rows, setRows] = useState([]);
   const [message, setMessage] = useState(null);
+  const [stock, setStock] = useState(0);
+  const [notification, setNotification] = useState(false);
 
   async function fethProducts () {
     try{
@@ -45,10 +48,20 @@ export const Product = () => {
       }
     }
   }
-  
+
   useEffect(() => {
     fethProducts();
-  }, [])
+  }, []);
+
+  var pusher = new Pusher(`${process.env.REACT_APP_PUSHER_API_KEY}`, {
+    cluster: `${process.env.REACT_APP_PUSHER_CLUSTER}`,
+  });
+
+  var channel = pusher.subscribe("remaining-stock");
+    channel.bind("App\\Events\\StockLeftNotification", (data) => {
+      setStock(data.message);
+      setNotification(true);
+  });
 
   const handleDelete = (e,id) => {
     e.preventDefault();
@@ -121,6 +134,7 @@ export const Product = () => {
     <div style={{ height: 300, width: '100%' }}>
       <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center"}}>
         <h4>
+          <h4>REMINING STOCK: {notification && stock}</h4>
           {errors &&
               <div className="alert">
                 {Object.keys(errors).map(key => (

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StockLeftNotification;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
@@ -81,6 +82,10 @@ class ProductController extends Controller
     {
         try{
             $product->where('id', $request->id)->delete();
+
+            $data = Product::all();
+            event(new StockLeftNotification((count($data))));
+
             return response(['message' => 'Deleted successfuly']);
         }catch (\Exception $e) {
             return response([

@@ -34,9 +34,7 @@ export const Dashboard = () => {
 
   const fetchDashboard = ev => {
     axiosClient.get('/dashboard/status')
-      .then((res) => {
-
-      })
+      .then(() => {})
   }
 
   return (
